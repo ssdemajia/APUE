@@ -1,0 +1,112 @@
+
+DF(1)                     BSD General Commands Manual                    DF(1)
+
+NNAAMMEE
+     ddff -- display free disk space
+
+SSYYNNOOPPSSIISS
+     ddff [--bb | --hh | --HH | --kk | --mm | --gg | --PP] [--aaiillnn] [--tt] [--TT _t_y_p_e]
+        [_f_i_l_e | _f_i_l_e_s_y_s_t_e_m _._._.]
+
+LLEEGGAACCYY SSYYNNOOPPSSIISS
+     ddff [--bb | --hh | --HH | --kk | --mm | --PP] [--aaiillnn] [--tt _t_y_p_e] [--TT _t_y_p_e] [_f_i_l_e |
+     _f_i_l_e_s_y_s_t_e_m _._._.]
+
+DDEESSCCRRIIPPTTIIOONN
+     The ddff utility displays statistics about the amount of free disk space on
+     the specified _f_i_l_e_s_y_s_t_e_m or on the filesystem of which _f_i_l_e is a part.
+     Values are displayed in 512-byte per block counts.  If neither a file or
+     a filesystem operand is specified, statistics for all mounted filesystems
+     are displayed (subject to the --tt option below).
+
+     The following options are available:
+
+     --aa      Show all mount points, including those that were mounted with the
+             MNT_IGNORE flag.
+
+     --bb      Use (the default) 512-byte blocks.  This is only useful as a way
+             to override an BLOCKSIZE specification from the environment.
+
+     --gg      Use 1073741824-byte (1-Gbyte) blocks rather than the default.
+             Note that this overrides the BLOCKSIZE specification from the
+             environment.
+
+     --HH      "Human-readable" output.  Use unit suffixes: Byte, Kilobyte,
+             Megabyte, Gigabyte, Terabyte and Petabyte in order to reduce the
+             number of digits to three or less using base 10 for sizes.
+
+     --hh      "Human-readable" output.  Use unit suffixes: Byte, Kilobyte,
+             Megabyte, Gigabyte, Terabyte and Petabyte in order to reduce the
+             number of digits to three or less using base 2 for sizes.
+
+     --ii      Include statistics on the number of free inodes. This option is
+             now the default to conform to Version 3 of the Single UNIX
+             Specification (``SUSv3'') Use --PP to suppress this output.
+
+     --kk      Use 1024-byte (1-Kbyte) blocks, rather than the default.  Note
+             that this overrides the BLOCKSIZE specification from the environ-
+             ment.
+
+     --ll      Only display information about locally-mounted filesystems.
+
+     --mm      Use 1048576-byte (1-Mbyte) blocks rather than the default.  Note
+             that this overrides the BLOCKSIZE specification from the environ-
+             ment.
+
+     --nn      Print out the previously obtained statistics from the filesys-
+             tems.  This option should be used if it is possible that one or
+             more filesystems are in a state such that they will not be able
+             to provide statistics without a long delay.  When this option is
+             specified, ddff will not request new statistics from the filesys-
+             tems, but will respond with the possibly stale statistics that
+             were previously obtained.
+
+     --PP      Use (the default) 512-byte blocks.  This is only useful as a way
+             to override an BLOCKSIZE specification from the environment.
+
+     --TT      Only print out statistics for filesystems of the specified types.
+             More than one type may be specified in a comma separated list.
+             The list of filesystem types can be prefixed with ``no'' to spec-
+             ify the filesystem types for which action should _n_o_t be taken.
+             For example, the ddff command:
+
+                   df -T nonfs,mfs
+
+             lists all filesystems except those of type NFS and MFS.  The
+             lsvfs(1) command can be used to find out the types of filesystems
+             that are available on the system.
+
+     --tt      If used with no arguments, this option is a no-op (Mac OS X
+             already prints the total allocated-space figures).  If used with
+             an argument, it acts like --TT, but this usage is deprecated and
+             should not be relied upon.
+
+EENNVVIIRROONNMMEENNTT
+     BLOCKSIZE  If the environment variable BLOCKSIZE is set, the block counts
+                will be displayed in units of that size block.
+
+BBUUGGSS
+     The --nn and --tt flags are ignored if a file or filesystem is specified.
+
+LLEEGGAACCYY DDEESSCCRRIIPPTTIIOONN
+     The "capacity" percentage is normally rounded up to the next higher inte-
+     ger.  In legacy mode, it is rounded down to the next lower integer.
+
+     When the --PP option and the --kk option are used together, sizes are
+     reported in 1024-blocks.  In legacy mode, when the --PP option and --kk
+     option are used together, the last option specified dictates the reported
+     block size.
+
+     The --tt option is normally a no-op (Mac OS X already prints the total
+     allocated-space figures).  In legacy mode, it is equivalent to --TT.
+
+     For more information about legacy mode, see compat(5).
+
+SSEEEE AALLSSOO
+     lsvfs(1), quota(1), fstatfs(2), getfsstat(2), statfs(2), getmntinfo(3),
+     compat(5), fstab(5), mount(8), quot(8)
+
+HHIISSTTOORRYY
+     A ddff command appeared in Version 1 AT&T UNIX.
+
+BSD                               May 8, 1995                              BSD
