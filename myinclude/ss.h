@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #define MAXLINE 512
 int log_to_stderr = 1;
+void pr_exit(int status);
 void err_msg(const char*,...);
 void err_dump(const char *, ...) __attribute__((noreturn));
 void err_quit(const char *, ...) __attribute__((noreturn));
