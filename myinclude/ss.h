@@ -4,10 +4,14 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <signal.h>
 
 #define MAXLINE 512
-int log_to_stderr = 1;
-void pr_exit(int status);
+int log_to_stderr = 1;//这个值设为非0表示输出log到标准输出
+
+int system(const char *cmdstring);//系统system命令的实现
+void pr_exit(int status);//打印错误信息
+
 void err_msg(const char*,...);
 void err_dump(const char *, ...) __attribute__((noreturn));
 void err_quit(const char *, ...) __attribute__((noreturn));
