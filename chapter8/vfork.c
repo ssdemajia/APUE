@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 int globval = 6;
 
 int main(int argc, char const *argv[]) {
@@ -15,10 +15,11 @@ int main(int argc, char const *argv[]) {
         printf("I'm child, pid = %d\n", getpid());
         globval++;
         var++;
-        _exit(0);
+        exit(0);
     } else {
         printf("I'm parent, pid = %d\n", getpid());
     }
-    printf("pid = %ld, glob = %d, var = %d\n", (long)getpid(), globval, var);
+    int ret = printf("pid = %ld, glob = %d, var = %d\n", (long)getpid(), globval, var);
+    printf("printf return = %d\n", ret);
     return 0;
 }

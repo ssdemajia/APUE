@@ -3,7 +3,7 @@ ROOT = ..
 inc = $(ROOT)/myinclude
 LDDIR = $(ROOT)/mylib#链接库所在文件夹
 LDFLAG =#链接所需要的参数
-PROGRAM = systemTest tsys printUIDGID acct
+PROGRAM = exec8.7 child8.7
 vpath %.h ../myinclude# %意味匹配零或若干个字符
 all: $(PROGRAM)
 $(PROGRAM): *.c libss.a
